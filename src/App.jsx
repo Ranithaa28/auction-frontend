@@ -1,7 +1,8 @@
 import axios from "axios";
 import "./App.css";
 
-const API = import.meta.env.VITE_API_URL;
+const API = const API =
+ "https://online-auction-platform-fh47.onrender.com/api/test";
 
 function App() {
 
