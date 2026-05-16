@@ -1,52 +1,28 @@
-import { useState } from "react";
 import axios from "axios";
+import "./App.css";
+
+const API = import.meta.env.VITE_API_URL;
 
 function App() {
-  const [message, setMessage] = useState("");
 
-  const testBackend = async () => {
+  const connectBackend = async () => {
     try {
-      const response = await axios.get(
-        "https://online-auction-platform-fh47.onrender.com"
-      );
-
-      setMessage("Backend Connected Successfully");
+      const response = await axios.get(API);
+      alert("Backend Connected Successfully");
+      console.log(response.data);
     } catch (error) {
-      setMessage("Backend Connection Failed");
+      alert("Backend Connection Failed");
+      console.log(error);
     }
   };
 
   return (
-    <div
-      style={{
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        background: "#0f172a",
-        color: "white",
-        flexDirection: "column",
-        fontFamily: "Arial",
-      }}
-    >
+    <div className="container">
       <h1>Auction Bazaar</h1>
 
-      <button
-        onClick={testBackend}
-        style={{
-          padding: "12px 20px",
-          border: "none",
-          background: "#2563eb",
-          color: "white",
-          borderRadius: "10px",
-          cursor: "pointer",
-          fontSize: "16px",
-        }}
-      >
+      <button onClick={connectBackend}>
         Connect Backend
       </button>
-
-      <p style={{ marginTop: "20px" }}>{message}</p>
     </div>
   );
 }
