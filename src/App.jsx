@@ -1,36 +1,33 @@
+import { useState } from "react";
 import axios from "axios";
 import "./App.css";
 
-const API =
-  "https://online-auction-platform-fh47.onrender.com/api/test";
-
 function App() {
+  const [message, setMessage] = useState("");
 
   const connectBackend = async () => {
-
     try {
+      const response = await axios.get(
+        "https://online-auction-platform-fh47.onrender.com/"
+      );
 
-      const response = await axios.get(API);
-
-      alert(response.data);
-
+      setMessage(response.data);
     } catch (error) {
-
-      console.log(error);
-
-      alert("Backend Connection Failed");
+      console.error(error);
+      setMessage("Backend connection failed");
     }
   };
 
   return (
     <div className="container">
-
       <h1>Auction Bazaar</h1>
+      <p>Full Stack Online Auction Platform</p>
 
       <button onClick={connectBackend}>
         Connect Backend
       </button>
 
+      <h2>{message}</h2>
     </div>
   );
 }
